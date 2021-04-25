@@ -4,7 +4,8 @@
     <div class="card text-dark bg-light mb-3 mx-auto" style="max-width: 600px;">
         <div class="card-header">ホーム</div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ action('PostController@store') }}" method="POST">
+                @csrf
                 <input type="text" class="form-control mb-3" name="body" min="1" max="255" placeholder="今どうしてる？">
                 <input type="submit" class="btn btn-secondary ms-auto" name="tweet" value="つぶやく">
             </form>
