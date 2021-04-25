@@ -36,13 +36,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーション
+        $request->validate([
+            'body' => 'min:1|max:255',
+        ]);
+
+        // bodyの登録
         $post = new Post();
         $post->body = $request->body;
 
-        // リクエストのセッション名からuserテーブルのidを検索
+        // user_idは、ログインユーザーのidをuserテーブルから検索して登録
         $user = User::where('name', Auth::user()->name)->first();
         $post->user_id = $user->id;
 
+        // DBに保存
         $post->save();
 
         return redirect('/index');

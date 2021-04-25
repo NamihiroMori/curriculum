@@ -12,8 +12,4 @@ class Post extends Model
      * @var array
      */
     protected $guarded = ['id'];
-
-    // public static $rules = [
-    //     'body' -> 'max:255'
-    // ];
 }

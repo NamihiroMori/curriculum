@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="card text-dark bg-light mb-3 mx-auto" style="max-width: 600px;">
         <div class="card-header">ホーム</div>
         <div class="card-body">
@@ -11,7 +20,7 @@
             </form>
         </div>
     </div>
-        @foreach ($posts as $post)
+    @foreach ($posts as $post)
         <div class="card text-dark bg-light mb-3 mx-auto" style="max-width: 600px;">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -21,5 +30,5 @@
                 <p>{{ $post->body }}</p>
             </div>
         </div>
-        @endforeach
+    @endforeach
 @endsection
