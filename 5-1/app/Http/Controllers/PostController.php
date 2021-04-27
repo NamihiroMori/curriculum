@@ -54,4 +54,14 @@ class PostController extends Controller
 
         return redirect('/index');
     }
+
+    /**
+     * ツイートを削除する
+     */
+    public function delete(Request $request) {
+        $post = Post::find($request->id);
+        $post->delete();
+
+        return redirect('/index');
+    }
 }

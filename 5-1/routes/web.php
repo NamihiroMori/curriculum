@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/index', 'PostController@index')->middleware('auth');
 Route::post('/index', 'PostController@store')->middleware('auth');
 
+Route::get('/posts/delete', 'PostController@delete')->middleware('auth');
 
 Auth::routes();
 

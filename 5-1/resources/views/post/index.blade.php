@@ -16,7 +16,7 @@
             <form action="{{ action('PostController@store') }}" method="POST">
                 @csrf
                 <input type="text" class="form-control mb-3" name="body" min="1" max="255" placeholder="今どうしてる？">
-                <input type="submit" class="btn btn-secondary ms-auto" name="tweet" value="つぶやく">
+                <input type="submit" class="btn btn-secondary" name="tweet" value="つぶやく">
             </form>
         </div>
     </div>
@@ -27,7 +27,15 @@
                     <p>{{ $post->user_name }}</p>
                     <p>{{ $post->created_at }}</p>
                 </div>
-                <p>{{ $post->body }}</p>
+                <div class="row">
+                    <p class="col-md-10">{{ $post->body }}</p>
+                    <div class="col-md-2">
+                        {{-- 削除ボタン：ログインユーザーと同じユーザーの投稿の場合のみ表示 --}}
+                        @if ($post->user_name === Auth::user()->name)
+                            <a class="text-danger align-bottom" href="{{ action('PostController@delete', ['id' => $post->id]) }}">削除</a>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     @endforeach
