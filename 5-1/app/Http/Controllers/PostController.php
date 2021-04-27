@@ -52,7 +52,7 @@ class PostController extends Controller
         // DBに保存
         $post->save();
 
-        return redirect('/index');
+        return redirect(route('index'));
     }
 
     /**
@@ -62,6 +62,6 @@ class PostController extends Controller
         $post = Post::find($request->id);
         $post->delete();
 
-        return redirect('/index');
+        return redirect(route('index'));
     }
 }
