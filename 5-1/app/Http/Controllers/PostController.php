@@ -17,8 +17,8 @@ class PostController extends Controller
     public function index(Request $request)
     {
 
-        // postsテーブルから全レコードを取得
-        $posts = Post::all();
+        // postsテーブルから全レコードを最新順に取得
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
         // user_idに対応するレコードをuser1テーブルから取得し、name属性を$postsのuser_nameとして設定する
         for ($i = 0; $i < $posts->count(); $i++) {
